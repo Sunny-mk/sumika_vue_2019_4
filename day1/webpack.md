@@ -74,6 +74,19 @@
 
 
 
+
+
+    // 一个js中只能有一个默认抛出，在导入的时候，都作为第一个参数接受。
+    export default() =>{  // 默认抛出 没有名字 在接受的时候可以随意命名
+
+    }
+
+    as是一个重命名的关键字
+
+    export //抛出
+    ...
+    
+    ...
  <!-- 告别警告 -->
 
     // webpack --config webpack.dev.js  //当配置文件不是默认的时候使用webpack --config
@@ -84,3 +97,21 @@
     },
 
     webpack --config .\webpack.dev.js --mode development 
+
+
+    //抽离css
+        1.下载插件 extract-text-webpack-plugin@next
+        2.引入插件 const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 是一个构造函数
+        3.使用插件 在module中使用
+             use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",  //结束时要加载的loader
+                    use: ['css-loader', 'sass-loader'] //如果单纯的抽离css,就只写css-loader就可以了
+                })
+        4.调用插件
+             plugins: [
+                // 1.先引入插件
+                //new 构造函数
+                new ExtractTextPlugin("styles.css"),  //接受抽离之后的文件名称
+            ]
+
+        
